@@ -186,7 +186,7 @@ html:not(.js) .pdf-frame, html:not(.js) .jn { display: none; }
 .tb-btn svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
 .tb-clock { padding: 0 14px 0 6px; font-size: 13px; font-variant-numeric: tabular-nums; white-space: nowrap; }
 
-.desk { position: fixed; inset: var(--top) 0 var(--bottom) 0; overflow: hidden; }
+.desk { position: fixed; inset: var(--top) 0 var(--bottom) 0; overflow: hidden; overflow: clip; }
 .quote-wrap { position: absolute; left: 136px; bottom: 30px; width: min(820px, calc(100% - 170px)); margin: 0; pointer-events: none; }
 .headline { margin: 0; font: 560 clamp(44px, 5.6vw, 88px)/1 var(--f-display); letter-spacing: -.03em; font-variation-settings: "wght" 560, "wdth" 100; }
 .headline .word { display: inline-block; white-space: nowrap; }

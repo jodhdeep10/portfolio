@@ -646,7 +646,8 @@
       if (w.max) { w.w = W; w.h = H; }
       else {
         w.w = clamp(w.w, 300, W); w.h = clamp(w.h, 220, H);
-        w.x = clamp(w.x, 120 - w.w, W - 120); w.y = clamp(w.y, 0, H - 40);
+        if (w.x + w.w > W) w.x = Math.max(0, W - w.w);
+        w.y = clamp(w.y, 0, H - 40);
       }
       applyGeo(w);
     });
