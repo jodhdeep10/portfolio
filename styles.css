@@ -187,8 +187,8 @@ html:not(.js) .pdf-frame, html:not(.js) .jn { display: none; }
 .tb-clock { padding: 0 14px 0 6px; font-size: 13px; font-variant-numeric: tabular-nums; white-space: nowrap; }
 
 .desk { position: fixed; inset: var(--top) 0 var(--bottom) 0; overflow: hidden; overflow: clip; }
-.quote-wrap { position: absolute; left: 136px; bottom: 30px; width: min(820px, calc(100% - 170px)); margin: 0; pointer-events: none; }
-.headline { margin: 0; font: 560 clamp(44px, 5.6vw, 88px)/1 var(--f-display); letter-spacing: -.03em; font-variation-settings: "wght" 560, "wdth" 100; }
+.quote-wrap { position: absolute; right: 36px; top: 28px; width: min(640px, calc(100% - 170px)); margin: 0; text-align: right; pointer-events: none; }
+.headline { margin: 0; font: 560 clamp(40px, 4.6vw, 70px)/1 var(--f-display); letter-spacing: -.03em; font-variation-settings: "wght" 560, "wdth" 100; }
 .headline .word { display: inline-block; white-space: nowrap; }
 .headline .ch { display: inline-block; will-change: font-variation-settings; }
 .headline .hl { color: var(--accent); }
@@ -276,8 +276,8 @@ html:not(.js) .pdf-frame, html:not(.js) .jn { display: none; }
 
 @media (max-height: 680px) and (min-width: 720px) {
   .dicons { grid-template-rows: repeat(3, auto); }
-  .quote-wrap { left: 236px; width: min(760px, calc(100% - 270px)); }
-  .headline { font-size: clamp(36px, 4.4vw, 64px); }
+  .quote-wrap { width: min(460px, calc(100% - 270px)); }
+  .headline { font-size: clamp(32px, 3.6vw, 52px); }
 }
 
 /* ---------- Phone: same system, one window at a time ---------- */
@@ -285,7 +285,7 @@ html:not(.js) .pdf-frame, html:not(.js) .jn { display: none; }
   :root { --top: calc(36px + env(safe-area-inset-top, 0px)); --bottom: calc(60px + env(safe-area-inset-bottom, 0px)); }
   .tk-start, .tk-tasks, .taskbar .btn-primary { display: none; }
   .desk { overflow-y: auto; padding: 24px 16px; }
-  .quote-wrap { position: static; width: auto; margin-bottom: 28px; pointer-events: auto; }
+  .quote-wrap { position: static; width: auto; margin-bottom: 28px; text-align: left; pointer-events: auto; }
   .headline { font-size: clamp(36px, 10.5vw, 48px); }
   .dicons { position: static; grid-auto-flow: row; grid-template-rows: none; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px 4px; }
   .dicon { width: auto; padding: 6px 0; }

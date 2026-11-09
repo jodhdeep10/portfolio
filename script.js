@@ -658,9 +658,8 @@
   const wanted = idFromHash(location.hash);
   if (wanted && (phone.matches || wanted !== 'about')) openApp(wanted, { opener: document.body, instant: true });
   else if (!phone.matches) {
-    // First window sits top right, clear of the quote
-    const { W } = deskSize();
-    const w = Math.min(APPS.about.w, W - 16);
-    openApp('about', { opener: document.body, instant: true, at: { x: W - w - 36, y: 24 } });
+    // First window sits bottom left beside the icons, clear of the quote
+    const { H } = deskSize();
+    openApp('about', { opener: document.body, instant: true, at: { x: 136, y: H - APPS.about.h - 24 } });
   } else syncChrome(null);
 })();
