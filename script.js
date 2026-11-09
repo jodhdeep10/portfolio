@@ -251,7 +251,14 @@
       else focusWin(w, true);
     });
     w.task = b;
-    tasks.appendChild(b);
+    const x = el('button', 'task-x', CTRL.close);
+    x.type = 'button';
+    x.title = 'Close';
+    x.setAttribute('aria-label', `Close ${w.def.title}`);
+    x.addEventListener('click', () => closeWin(w));
+    const item = el('div', 'task-item');
+    item.append(b, x);
+    tasks.appendChild(item);
   }
 
   function minimize(w) {
@@ -292,7 +299,7 @@
 
   function closeWin(w) {
     wins.delete(w.id);
-    w.task.remove();
+    w.task.parentElement.remove();
     stopApp(w.id);
     w.content.querySelectorAll('iframe').forEach((f) => f.remove());
     if (w.def.keepHidden) w.content.hidden = true;
