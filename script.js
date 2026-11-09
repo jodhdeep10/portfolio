@@ -44,7 +44,7 @@
     resume:    { title: 'Resume',                icon: 'resume',    w: 700, h: 720 },
     contact:   { title: 'Contact Me',            icon: 'contact',   w: 540, h: 440 },
     journey:   { title: 'Journey',               icon: 'journey',   w: 780, h: 720 },
-    education: { title: 'Learning & Leadership', icon: 'education', w: 660, h: 470 },
+    education: { title: 'Foundations',           icon: 'education', w: 720, h: 540 },
     toolkit:   { title: 'Toolkit',               icon: 'toolkit',   w: 720, h: 380 }
   };
   const ICON_ORDER = ['about', 'resume', 'contact', 'journey', 'education', 'toolkit'];
@@ -440,7 +440,9 @@
   let launcher = null;
   const SEARCH = ICON_ORDER.map((id) => ({ label: APPS[id].title, id, def: APPS[id] }));
   $$('.proj').forEach((p) => SEARCH.push({ label: $('h3', p).textContent, hint: 'Project', id: 'journey', def: APPS.journey, target: p.id, extra: p.textContent }));
-  $$('.job').forEach((j) => SEARCH.push({ label: $('h2', j).textContent, hint: 'Role', id: 'journey', def: APPS.journey, target: j.id, extra: $('.job-org', j).textContent + $('.bul', j).textContent }));
+  [['journey', 'Role'], ['education', 'Foundations']].forEach(([id, hint]) => {
+    $$(`#${id} .job`).forEach((j) => SEARCH.push({ label: $('h2', j).textContent, hint, id, def: APPS[id], target: j.id, extra: j.textContent }));
+  });
   $$('.kit li').forEach((li) => SEARCH.push({ label: li.textContent, hint: 'Skill', id: 'toolkit', def: APPS.toolkit }));
 
   function itemButton(it, first) {
@@ -518,10 +520,13 @@
     if (starters[id]) starters[id](w);
   }
 
+  function wireJumps(w) {
+    $$('[data-jump]', w.content).forEach((b) => b.addEventListener('click', () => jumpTo(w, b.dataset.jump)));
+  }
+
   const INIT = {
-    journey(w) {
-      $$('[data-jump]', w.content).forEach((b) => b.addEventListener('click', () => jumpTo(w, b.dataset.jump)));
-    },
+    journey: wireJumps,
+    education: wireJumps,
 
     contact(w) {
       const f = $('form', w.content);

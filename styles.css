@@ -103,6 +103,10 @@ html:not(.js) .pdf-frame, html:not(.js) .jn { display: none; }
 .job-org { color: var(--ink-3); font-size: 14.5px; margin-bottom: 10px; }
 .bul { display: grid; gap: 6px; color: var(--ink-2); font-size: 14.5px; }
 .bul li { position: relative; padding-left: 14px; }
+.bul strong { color: var(--ink); font-weight: 600; }
+.job-org:last-child { margin-bottom: 0; }
+/* Scroll room so the last entries can reach the top when jumped to */
+.js #education::after { content: ""; display: block; height: 300px; }
 .bul li::before { content: ""; position: absolute; left: 0; top: .68em; width: 5px; height: 1.5px; background: var(--ink-3); }
 .proj-label { display: block; color: var(--ink-3); margin: 26px 0 0; padding-bottom: 8px; border-bottom: 1px solid var(--line-2); }
 .proj { display: grid; gap: 14px; padding: 20px 0; border-bottom: 1px solid var(--line); scroll-margin-top: 58px; }
@@ -148,11 +152,6 @@ html:not(.js) .pdf-frame, html:not(.js) .jn { display: none; }
 .pv-wave svg { width: 100%; height: 100%; fill: none; stroke: var(--accent); stroke-width: 2; vector-effect: non-scaling-stroke; }
 
 /* Learning & Leadership */
-.edu { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
-.edu > div { background: var(--surface-2); border-radius: 8px; padding: 14px 16px; }
-.edu .mono { color: var(--ink-3); }
-.edu h3 { font-size: 17px; margin: 2px 0 4px; }
-.edu p:last-child { font-size: 14px; color: var(--ink-2); }
 
 /* Toolkit */
 .kits { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }
