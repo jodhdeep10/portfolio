@@ -10,7 +10,7 @@
   --good: #1f7a5a; --wait: #a9823a;
   --glass: rgba(255, 255, 255, .78);
   --term: #121926; --term-ink: #dfe6f0; --term-acc: #8ab0f5;
-  --orb-1: 92 142 226; --orb-2: 72 176 176; --orb-3: 132 122 222; --orb-o: .34;
+  --orb-1: 92 142 226; --orb-2: 72 176 176; --orb-3: 132 122 222; --orb-o: .4; --snow: 255 255 255;
   --shadow: 0 1px 2px rgba(24, 34, 48, .06), 0 10px 24px -12px rgba(24, 34, 48, .22);
   --shadow-lg: 0 2px 4px rgba(24, 34, 48, .06), 0 28px 56px -20px rgba(24, 34, 48, .38);
   --f-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
@@ -30,7 +30,7 @@
   --good: #7fd1ab; --wait: #d6b77c;
   --glass: rgba(24, 33, 48, .78);
   --term: #0b101a;
-  --orb-1: 62 108 208; --orb-2: 38 134 146; --orb-3: 100 86 192; --orb-o: .42;
+  --orb-1: 62 108 208; --orb-2: 38 134 146; --orb-3: 100 86 192; --orb-o: .5; --snow: 226 236 252;
   --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 12px 28px -14px rgba(0, 0, 0, .7);
   --shadow-lg: 0 2px 6px rgba(0, 0, 0, .35), 0 32px 64px -24px rgba(0, 0, 0, .85);
 }
@@ -176,10 +176,11 @@ html:not(.js) .pdf-frame, html:not(.js) .jn { display: none; }
 /* ---------- Desktop ---------- */
 .wall { position: fixed; inset: 0; background: linear-gradient(165deg, var(--bg), var(--bg-2)); overflow: hidden; }
 /* Soft pools of colour that drift slowly. Gradients only, no blur filter, so it stays cheap to draw. */
-.orb { position: absolute; width: 80vmax; height: 80vmax; border-radius: 50%; opacity: var(--orb-o); background: radial-gradient(closest-side, rgb(var(--c) / .9), rgb(var(--c) / .55) 40%, rgb(var(--c) / .18) 72%, rgb(var(--c) / 0)); will-change: transform; animation: 58s ease-in-out infinite alternate; }
+.orb { position: absolute; width: 80vmax; height: 80vmax; border-radius: 50%; opacity: var(--orb-o); background: radial-gradient(closest-side, rgb(var(--c) / .9), rgb(var(--c) / .55) 40%, rgb(var(--c) / .18) 72%, rgb(var(--c) / 0)); will-change: transform; animation: 40s ease-in-out infinite alternate; }
+.snow { position: absolute; inset: 0; width: 100%; height: 100%; }
 .o1 { --c: var(--orb-1); left: -30vmax; top: -38vmax; animation-name: drift-1; }
-.o2 { --c: var(--orb-2); right: -32vmax; bottom: -44vmax; animation-name: drift-2; animation-duration: 74s; }
-.o3 { --c: var(--orb-3); left: 8vmax; bottom: -52vmax; animation-name: drift-3; animation-duration: 90s; }
+.o2 { --c: var(--orb-2); right: -32vmax; bottom: -44vmax; animation-name: drift-2; animation-duration: 52s; }
+.o3 { --c: var(--orb-3); left: 8vmax; bottom: -52vmax; animation-name: drift-3; animation-duration: 64s; }
 @keyframes drift-1 { 50% { transform: translate(26vmax, 12vmax) scale(1.14); } 100% { transform: translate(52vmax, -2vmax) scale(.94); } }
 @keyframes drift-2 { 50% { transform: translate(-24vmax, -16vmax) scale(.92); } 100% { transform: translate(-44vmax, 4vmax) scale(1.12); } }
 @keyframes drift-3 { 50% { transform: translate(22vmax, -20vmax) scale(1.16); } 100% { transform: translate(-6vmax, -30vmax) scale(.96); } }
@@ -195,12 +196,12 @@ html:not(.js) .pdf-frame, html:not(.js) .jn { display: none; }
 .tb-clock { padding: 0 14px 0 6px; font-size: 13px; font-variant-numeric: tabular-nums; white-space: nowrap; }
 
 .desk { position: fixed; inset: var(--top) 0 var(--bottom) 0; overflow: hidden; overflow: clip; }
-.quote-wrap { position: absolute; right: 36px; top: 28px; width: min(640px, calc(100% - 170px)); margin: 0; text-align: right; pointer-events: none; }
-.headline { margin: 0; font: 560 clamp(40px, 4.6vw, 70px)/1 var(--f-display); letter-spacing: -.03em; font-variation-settings: "wght" 560, "wdth" 100; }
+.quote-wrap { position: absolute; left: 136px; bottom: 30px; width: min(820px, calc(100% - 170px)); margin: 0; pointer-events: none; }
+.headline { margin: 0; font: 560 clamp(44px, 5.6vw, 88px)/1 var(--f-display); letter-spacing: -.03em; font-variation-settings: "wght" 560, "wdth" 100; }
 .headline .word { display: inline-block; white-space: nowrap; }
 .headline .ch { display: inline-block; will-change: font-variation-settings; }
 .headline .hl { color: var(--accent); }
-.quote-by { margin-top: 12px; color: var(--ink-2); font-size: 14px; }
+.quote-by { margin-top: 12px; color: var(--ink); font-size: 14px; }
 .dicons { position: absolute; left: 14px; top: 14px; display: grid; grid-auto-flow: column; grid-template-rows: repeat(6, auto); gap: 6px 4px; justify-content: start; }
 .dicon { width: 92px; padding: 8px 4px 6px; display: flex; flex-direction: column; align-items: center; gap: 6px; border-radius: 8px; }
 .dicon:hover { background: var(--accent-soft); }
@@ -282,10 +283,14 @@ html:not(.js) .pdf-frame, html:not(.js) .jn { display: none; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
 
+/* Laptop heights: keep the quote below the first window */
+@media (max-height: 820px) and (min-width: 720px) {
+  .headline { font-size: clamp(36px, 4.2vw, 60px); }
+}
 @media (max-height: 680px) and (min-width: 720px) {
   .dicons { grid-template-rows: repeat(3, auto); }
-  .quote-wrap { width: min(460px, calc(100% - 270px)); }
-  .headline { font-size: clamp(32px, 3.6vw, 52px); }
+  .quote-wrap { left: 236px; bottom: 14px; width: min(760px, calc(100% - 270px)); }
+  .headline { font-size: clamp(32px, 3.2vw, 44px); }
 }
 
 /* ---------- Phone: same system, one window at a time ---------- */
@@ -293,7 +298,7 @@ html:not(.js) .pdf-frame, html:not(.js) .jn { display: none; }
   :root { --top: calc(36px + env(safe-area-inset-top, 0px)); --bottom: calc(60px + env(safe-area-inset-bottom, 0px)); }
   .tk-start, .tk-tasks, .taskbar .btn-primary { display: none; }
   .desk { overflow-y: auto; padding: 24px 16px; }
-  .quote-wrap { position: static; width: auto; margin-bottom: 28px; text-align: left; pointer-events: auto; }
+  .quote-wrap { position: static; width: auto; margin-bottom: 28px; pointer-events: auto; }
   .headline { font-size: clamp(36px, 10.5vw, 48px); }
   .dicons { position: static; grid-auto-flow: row; grid-template-rows: none; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px 4px; }
   .dicon { width: auto; padding: 6px 0; }

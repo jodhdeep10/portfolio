@@ -633,6 +633,52 @@
   }, { passive: true });
   (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(measureChars);
 
+  /* ---------- Light snowfall behind the windows ---------- */
+  (function snowfall() {
+    if (!motionOK()) return;
+    const canvas = document.createElement('canvas');
+    canvas.className = 'snow';
+    canvas.setAttribute('aria-hidden', 'true');
+    wall.append(canvas);
+    const ctx = canvas.getContext('2d');
+    const rand = (a, b) => a + Math.random() * (b - a);
+    const flakes = [];
+    let W = 0, H = 0, last = performance.now();
+    // Nearer flakes are larger, brighter and fall faster
+    const newFlake = (y) => {
+      const near = Math.random();
+      return { x: rand(0, W), y, r: 0.9 + near * 1.9, v: 14 + near * 30, a: 0.4 + near * 0.5, sway: rand(8, 26), freq: rand(0.25, 0.7), phase: rand(0, Math.PI * 2) };
+    };
+    function size() {
+      const oldW = W, dpr = Math.min(devicePixelRatio || 1, 2);
+      W = innerWidth; H = innerHeight;
+      canvas.width = W * dpr; canvas.height = H * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      if (oldW) flakes.forEach((f) => { f.x *= W / oldW; });
+      const want = Math.round(clamp(W * H / 26000, 24, 70));
+      while (flakes.length < want) flakes.push(newFlake(rand(0, H)));
+      flakes.length = want;
+    }
+    function tick(now) {
+      const dt = Math.min((now - last) / 1000, 0.05);
+      last = now;
+      ctx.clearRect(0, 0, W, H);
+      ctx.fillStyle = `rgb(${getComputedStyle(wall).getPropertyValue('--snow').trim()})`;
+      for (const f of flakes) {
+        f.y += f.v * dt;
+        if (f.y > H + 4) Object.assign(f, newFlake(-4));
+        ctx.globalAlpha = f.a;
+        ctx.beginPath();
+        ctx.arc(f.x + Math.sin(now / 1000 * f.freq + f.phase) * f.sway, f.y, f.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      requestAnimationFrame(tick);
+    }
+    size();
+    addEventListener('resize', size);
+    requestAnimationFrame(tick);
+  })();
+
   /* ---------- Resize and start ---------- */
   addEventListener('resize', debounce(() => {
     measureChars();
@@ -653,8 +699,9 @@
   const wanted = idFromHash(location.hash);
   if (wanted && (phone.matches || wanted !== 'about')) openApp(wanted, { opener: document.body, instant: true });
   else if (!phone.matches) {
-    // First window sits bottom left beside the icons, clear of the quote
-    const { H } = deskSize();
-    openApp('about', { opener: document.body, instant: true, at: { x: 136, y: H - APPS.about.h - 24 } });
+    // First window sits top right, clear of the quote
+    const { W, H } = deskSize();
+    const w = Math.min(APPS.about.w, W - 16);
+    openApp('about', { opener: document.body, instant: true, at: { x: W - w - 36, y: H < 640 ? 8 : 24 } });
   } else syncChrome(null);
 })();
