@@ -695,6 +695,23 @@
     measureChars();
   }
   const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+  // Touch screens have no hovering pointer, so the same letter swell passes through on its own
+  function waveLetters() {
+    const REACH = 8, MS = 2200, chars = flexChars.slice(), start = performance.now();
+    return new Promise((done) => {
+      requestAnimationFrame(function step(now) {
+        const head = ((now - start) / MS) * (chars.length + REACH * 2) - REACH;
+        const running = head < chars.length + REACH;
+        chars.forEach((c, i) => {
+          const k = Math.max(0, 1 - Math.abs(i - head) / REACH);
+          const e = k * k * (3 - 2 * k);
+          c.el.style.fontVariationSettings = running ? `"wght" ${(560 + e * 240).toFixed(0)}, "wdth" ${(100 - e * 22).toFixed(1)}` : '';
+          c.el.style.transform = running && e ? `translateY(${(-e * 6).toFixed(2)}px)` : '';
+        });
+        if (running) requestAnimationFrame(step); else done();
+      });
+    });
+  }
   async function rotateQuotes() {
     headline.appendChild(caret);
     for (let i = 0; ; i = (i + 1) % QUOTES.length) {
@@ -710,7 +727,9 @@
       }
       headline.classList.remove('typing');
       quoteBy.classList.add('on');
-      await wait(6500);
+      const hold = wait(6500);
+      if (!finePointer.matches) { await wait(500); await waveLetters(); }
+      await hold;
       quoteBy.classList.remove('on');
       await wait(450);
       headline.classList.add('typing');
