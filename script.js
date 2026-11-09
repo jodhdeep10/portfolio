@@ -67,8 +67,8 @@
 
   const desk = el('div', 'desk', `
     <figure class="quote-wrap">
-      <blockquote class="headline">The best way to predict the future is to <span class="hl">invent</span> it.</blockquote>
-      <figcaption class="quote-by">Alan Kay</figcaption>
+      <blockquote class="headline"></blockquote>
+      <figcaption class="quote-by"></figcaption>
     </figure>
     <div class="dicons"></div>`);
   desk.setAttribute('role', 'main');
@@ -593,11 +593,24 @@
     }).catch(() => {});
   }
 
-  /* ---------- Quote that responds to the cursor ---------- */
+  /* ---------- Rotating typed quotes that respond to the cursor ---------- */
+  const QUOTES = [
+    { html: 'The best way to predict the future is to <span class="hl">invent</span> it.', by: 'Alan Kay' },
+    { html: 'The only way to do great work is to <span class="hl">love</span> what you do.', by: 'Steve Jobs' },
+    { html: 'Fall in love with the <span class="hl">problem,</span> not the solution.', by: 'Uri Levine' },
+    { html: 'Excellence, then, is not an act, but a <span class="hl">habit.</span>', by: 'Will Durant' },
+    { html: '<span class="hl">Done</span> is better than perfect.', by: 'Sheryl Sandberg' }
+  ];
   const headline = $('.headline', desk);
+  const quoteWrap = $('.quote-wrap', desk);
+  const quoteBy = $('.quote-by', desk);
+  const caret = el('span', 'caret');
+  caret.setAttribute('aria-hidden', 'true');
   const flexChars = [];
-  (function splitHeadline() {
+  function splitHeadline(html) {
+    headline.innerHTML = html;
     headline.setAttribute('aria-label', headline.textContent);
+    flexChars.length = 0;
     const walk = (node) => {
       Array.from(node.childNodes).forEach((child) => {
         if (child.nodeType === 3) {
@@ -620,7 +633,7 @@
       });
     };
     walk(headline);
-  })();
+  }
 
   function measureChars() {
     flexChars.forEach((c) => { c.el.style.fontVariationSettings = ''; c.el.style.transform = ''; c.el.style.width = ''; });
@@ -653,7 +666,63 @@
     pointer.x = e.clientX; pointer.y = e.clientY;
     if (!flexRaf) flexRaf = requestAnimationFrame(flexTick);
   }, { passive: true });
-  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(measureChars);
+
+  let shownChars = 0;
+  function showChars(n) {
+    shownChars = n;
+    flexChars.forEach((c, i) => c.el.classList.toggle('off', i >= n));
+    const a = flexChars[Math.max(n - 1, 0)].el;
+    caret.style.translate = `${a.offsetLeft + (n ? a.offsetWidth : 0)}px ${a.offsetTop}px`;
+  }
+  // On phones the quote sits above the folders, so hold the tallest quote's height to keep them still
+  function reserveQuoteHeight() {
+    quoteWrap.style.minHeight = '';
+    if (!phone.matches) return;
+    const probe = quoteWrap.cloneNode(true);
+    probe.style.cssText = `visibility:hidden;position:absolute;width:${quoteWrap.clientWidth}px`;
+    desk.appendChild(probe);
+    quoteWrap.style.minHeight = `${Math.max(...QUOTES.map((q) => { $('.headline', probe).innerHTML = q.html; return probe.offsetHeight; }))}px`;
+    probe.remove();
+  }
+  function syncQuote() {
+    reserveQuoteHeight();
+    measureChars();
+    if (motionOK()) showChars(shownChars);
+  }
+  function setQuote(q) {
+    splitHeadline(q.html);
+    quoteBy.textContent = q.by;
+    measureChars();
+  }
+  const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+  async function rotateQuotes() {
+    headline.appendChild(caret);
+    for (let i = 0; ; i = (i + 1) % QUOTES.length) {
+      setQuote(QUOTES[i]);
+      headline.appendChild(caret);
+      showChars(0);
+      headline.classList.add('typing');
+      await wait(350);
+      for (let n = 1; n <= flexChars.length; n++) {
+        showChars(n);
+        // A short beat between words reads more like real typing
+        await wait(42 + Math.random() * 46 + (flexChars[n - 1].el.nextSibling ? 0 : 70));
+      }
+      headline.classList.remove('typing');
+      quoteBy.classList.add('on');
+      await wait(6500);
+      quoteBy.classList.remove('on');
+      await wait(450);
+      headline.classList.add('typing');
+      for (let n = flexChars.length - 1; n >= 0; n--) {
+        showChars(n);
+        await wait(22);
+      }
+    }
+  }
+  if (motionOK()) rotateQuotes();
+  else { setQuote(QUOTES[0]); quoteBy.classList.add('on'); }
+  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(syncQuote);
 
   /* ---------- Light snowfall behind the windows ---------- */
   (function snowfall() {
@@ -703,7 +772,7 @@
 
   /* ---------- Resize and start ---------- */
   addEventListener('resize', debounce(() => {
-    measureChars();
+    syncQuote();
     const { W, H } = deskSize();
     wins.forEach((w) => {
       if (w.max) { w.w = W; w.h = H; }

@@ -201,11 +201,16 @@ html:not(.js) .pdf-frame, html:not(.js) .jn { display: none; }
 
 .desk { position: fixed; inset: var(--top) 0 var(--bottom) 0; overflow: hidden; overflow: clip; }
 .quote-wrap { position: absolute; left: 136px; bottom: 30px; width: min(820px, calc(100% - 170px)); margin: 0; pointer-events: none; }
-.headline { margin: 0; font: 560 clamp(44px, 5.6vw, 88px)/1 var(--f-display); letter-spacing: -.03em; font-variation-settings: "wght" 560, "wdth" 100; }
+.headline { position: relative; margin: 0; font: 560 clamp(44px, 5.6vw, 88px)/1 var(--f-display); letter-spacing: -.03em; font-variation-settings: "wght" 560, "wdth" 100; }
 .headline .word { display: inline-block; white-space: nowrap; }
 .headline .ch { display: inline-block; will-change: font-variation-settings; }
 .headline .hl { color: var(--accent); }
-.quote-by { margin-top: 12px; color: var(--ink); font-size: 14px; }
+.quote-by { margin-top: 12px; min-height: 1.55em; color: var(--ink); font-size: 14px; opacity: 0; transition: opacity .4s; }
+.quote-by.on { opacity: 1; }
+.headline .ch.off { visibility: hidden; }
+.caret { position: absolute; left: 0; top: 0; width: .055em; height: 1em; margin-left: .03em; border-radius: 1px; background: var(--accent); animation: caret-blink 1.06s steps(1) infinite; }
+.headline.typing .caret { animation: none; }
+@keyframes caret-blink { 50% { opacity: 0; } }
 .dicons { position: absolute; left: 14px; top: 14px; display: grid; grid-auto-flow: column; grid-template-rows: repeat(7, auto); gap: 6px 4px; justify-content: start; }
 .dicon { width: 92px; padding: 8px 4px 6px; display: flex; flex-direction: column; align-items: center; gap: 6px; border-radius: 8px; }
 .dicon:hover { background: var(--accent-soft); }
