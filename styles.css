@@ -105,6 +105,11 @@ html:not(.js) .pdf-frame, html:not(.js) .jn { display: none; }
 .bul li { position: relative; padding-left: 14px; }
 .bul strong { color: var(--ink); font-weight: 600; }
 .job-org:last-child { margin-bottom: 0; }
+.cert-links { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+.cert { position: relative; margin: 0; aspect-ratio: 1056 / 816; max-width: 100%; overflow: hidden; border: 1px solid var(--line-2); border-radius: 8px; background: var(--surface); }
+.cert img { display: block; width: 100%; height: 100%; object-fit: contain; }
+/* The PDF is display only, so scrolling over it still moves the window. Open PDF gives the interactive version. */
+.cert iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; pointer-events: none; }
 /* Scroll room so the last entries can reach the top when jumped to */
 .js #education::after { content: ""; display: block; height: 300px; }
 .bul li::before { content: ""; position: absolute; left: 0; top: .68em; width: 5px; height: 1.5px; background: var(--ink-3); }
@@ -201,7 +206,7 @@ html:not(.js) .pdf-frame, html:not(.js) .jn { display: none; }
 .headline .ch { display: inline-block; will-change: font-variation-settings; }
 .headline .hl { color: var(--accent); }
 .quote-by { margin-top: 12px; color: var(--ink); font-size: 14px; }
-.dicons { position: absolute; left: 14px; top: 14px; display: grid; grid-auto-flow: column; grid-template-rows: repeat(6, auto); gap: 6px 4px; justify-content: start; }
+.dicons { position: absolute; left: 14px; top: 14px; display: grid; grid-auto-flow: column; grid-template-rows: repeat(7, auto); gap: 6px 4px; justify-content: start; }
 .dicon { width: 92px; padding: 8px 4px 6px; display: flex; flex-direction: column; align-items: center; gap: 6px; border-radius: 8px; }
 .dicon:hover { background: var(--accent-soft); }
 .dicon-l { font-size: 13px; font-weight: 500; line-height: 1.2; text-align: center; }
@@ -286,9 +291,12 @@ html:not(.js) .pdf-frame, html:not(.js) .jn { display: none; }
 @media (max-height: 820px) and (min-width: 720px) {
   .headline { font-size: clamp(36px, 4.2vw, 60px); }
 }
+@media (max-height: 760px) and (min-width: 720px) {
+  .dicons { grid-template-rows: repeat(4, auto); }
+  .quote-wrap { left: 236px; width: min(760px, calc(100% - 270px)); }
+}
 @media (max-height: 680px) and (min-width: 720px) {
-  .dicons { grid-template-rows: repeat(3, auto); }
-  .quote-wrap { left: 236px; bottom: 14px; width: min(760px, calc(100% - 270px)); }
+  .quote-wrap { bottom: 14px; }
   .headline { font-size: clamp(32px, 3.2vw, 44px); }
 }
 

@@ -214,7 +214,6 @@
         <button type="button" data-jump="f-mba">MBA</button>
         <button type="button" data-jump="f-be">B.E.</button>
         <button type="button" data-jump="f-lead">Leadership</button>
-        <button type="button" data-jump="f-cert">Certifications</button>
       </nav>
 
       <article class="job" id="f-mba">
@@ -250,14 +249,39 @@
         </ul>
       </article>
 
-      <article class="job" id="f-cert">
-        <p class="job-when mono">Product</p>
-        <h2>Certifications</h2>
-        <p class="job-org">Product management foundations</p>
-        <ul class="bul">
-          <li>Market Research &amp; Competitive Analysis</li>
-          <li>Enterprise Product Management Fundamentals</li>
-        </ul>
+    </section>
+
+    <!-- ============ CERTIFICATIONS: script.js shows the PDF where the browser can, the image otherwise ============ -->
+    <section id="certifications" class="app" data-app="certifications">
+      <nav class="jn" aria-label="Jump to a certificate">
+        <button type="button" data-jump="c-market">Market Research</button>
+        <button type="button" data-jump="c-epm">Enterprise Product Management</button>
+      </nav>
+
+      <article class="job" id="c-market">
+        <p class="job-when mono">Aug 31, 2026</p>
+        <h2>Market Research and Competitive Analysis</h2>
+        <p class="job-org">Microsoft, offered through Coursera</p>
+        <p class="cert-links">
+          <a class="btn btn-primary" href="https://www.coursera.org/account/accomplishments/verify/MGOCC8LA8OP4" target="_blank" rel="noopener">Verify on Coursera</a>
+          <a class="btn cert-pdf" href="assets/certs/MGOCC8LA8OP4.pdf" target="_blank" rel="noopener">Open PDF</a>
+        </p>
+        <figure class="cert" data-pdf="assets/certs/MGOCC8LA8OP4.pdf">
+          <img src="assets/certs/MGOCC8LA8OP4.jpg" alt="Coursera course certificate for Market Research and Competitive Analysis, authorized by Microsoft, awarded to Jodhdeep Singh on Aug 31, 2026" loading="lazy" width="1400" height="1082" />
+        </figure>
+      </article>
+
+      <article class="job" id="c-epm">
+        <p class="job-when mono">Aug 15, 2026</p>
+        <h2>Enterprise Product Management Fundamentals</h2>
+        <p class="job-org">Microsoft, offered through Coursera</p>
+        <p class="cert-links">
+          <a class="btn btn-primary" href="https://www.coursera.org/account/accomplishments/verify/WIDGE69MM88T" target="_blank" rel="noopener">Verify on Coursera</a>
+          <a class="btn cert-pdf" href="assets/certs/WIDGE69MM88T.pdf" target="_blank" rel="noopener">Open PDF</a>
+        </p>
+        <figure class="cert" data-pdf="assets/certs/WIDGE69MM88T.pdf">
+          <img src="assets/certs/WIDGE69MM88T.jpg" alt="Coursera course certificate for Enterprise Product Management Fundamentals, authorized by Microsoft, awarded to Jodhdeep Singh on Aug 15, 2026" loading="lazy" width="1400" height="1082" />
+        </figure>
       </article>
     </section>
 

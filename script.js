@@ -32,6 +32,7 @@
     contact: '<rect x="3" y="5.5" width="18" height="13" rx="1.5"/><path d="M3.5 7l8.5 6.5L20.5 7"/>',
     journey: '<circle cx="6" cy="18" r="2"/><circle cx="12" cy="11" r="2"/><circle cx="18" cy="5.5" r="2"/><path d="M7.4 16.5l3.2-3.9M13.5 9.7l3-2.8"/>',
     education: '<path d="M2.5 9.5L12 5l9.5 4.5L12 14z"/><path d="M7 11.800V16c0 1.200 2.200 2.500 5 2.500s5-1.300 5-2.500v-4.200"/>',
+    certifications: '<circle cx="12" cy="9" r="5.5"/><path d="M8.5 13.5 7 21l5-2.500 5 2.500-1.500-7.500"/>',
     toolkit: '<path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M4 7.5l8 4.5 8-4.500M12 12v9"/>',
     home: '<path d="M4 11l8-7 8 7"/><path d="M6.5 9.5V20h11V9.5"/>'
   };
@@ -45,9 +46,10 @@
     contact:   { title: 'Contact Me',            icon: 'contact',   w: 540, h: 440 },
     journey:   { title: 'Journey',               icon: 'journey',   w: 780, h: 720 },
     education: { title: 'Foundations',           icon: 'education', w: 720, h: 540 },
+    certifications: { title: 'Certifications',   icon: 'certifications', w: 720, h: 640 },
     toolkit:   { title: 'Toolkit',               icon: 'toolkit',   w: 720, h: 380 }
   };
-  const ICON_ORDER = ['about', 'resume', 'contact', 'journey', 'education', 'toolkit'];
+  const ICON_ORDER = ['about', 'resume', 'contact', 'journey', 'education', 'certifications', 'toolkit'];
   const idFromHash = (h) => {
     const key = decodeURIComponent(h.replace(/^#/, ''));
     return APPS[key] ? key : null;
@@ -440,7 +442,7 @@
   let launcher = null;
   const SEARCH = ICON_ORDER.map((id) => ({ label: APPS[id].title, id, def: APPS[id] }));
   $$('.proj').forEach((p) => SEARCH.push({ label: $('h3', p).textContent, hint: 'Project', id: 'journey', def: APPS.journey, target: p.id, extra: p.textContent }));
-  [['journey', 'Role'], ['education', 'Foundations']].forEach(([id, hint]) => {
+  [['journey', 'Role'], ['education', 'Foundations'], ['certifications', 'Certificate']].forEach(([id, hint]) => {
     $$(`#${id} .job`).forEach((j) => SEARCH.push({ label: $('h2', j).textContent, hint, id, def: APPS[id], target: j.id, extra: j.textContent }));
   });
   $$('.kit li').forEach((li) => SEARCH.push({ label: li.textContent, hint: 'Skill', id: 'toolkit', def: APPS.toolkit }));
@@ -510,11 +512,22 @@
   const stopApp = (id) => { if (stoppers[id]) stoppers[id](); };
 
   function initApp(id, w) {
-    if (id === 'resume' && !inViewer && !phone.matches && finePointer.matches && !$('iframe', w.content)) {
+    const embedPdf = !inViewer && !phone.matches && finePointer.matches;
+    if (id === 'resume' && embedPdf && !$('iframe', w.content)) {
       const f = el('iframe');
       f.src = `${RESUME}#view=FitH`;
       f.title = 'Resume of Jodhdeep Singh';
       $('.pdf-frame', w.content).appendChild(f);
+    }
+    if (id === 'certifications' && embedPdf && navigator.pdfViewerEnabled !== false) {
+      // The image stays underneath as the fallback
+      $$('.cert:not(:has(iframe))', w.content).forEach((fig) => {
+        const f = el('iframe');
+        f.src = `${fig.dataset.pdf}#toolbar=0&navpanes=0&scrollbar=0&view=Fit`;
+        f.title = $('img', fig).alt;
+        f.tabIndex = -1;
+        fig.appendChild(f);
+      });
     }
     if (!inited.has(id)) { inited.add(id); if (INIT[id]) INIT[id](w); }
     if (starters[id]) starters[id](w);
@@ -527,6 +540,10 @@
   const INIT = {
     journey: wireJumps,
     education: wireJumps,
+    certifications(w) {
+      wireJumps(w);
+      if (inViewer) $$('.cert-pdf', w.content).forEach((a) => a.remove());
+    },
 
     contact(w) {
       const f = $('form', w.content);
