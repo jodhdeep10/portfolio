@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Jodhdeep Singh · Portfolio</title>
+  <meta name="description" content="Jodhdeep Singh is a product professional shipping AI-powered products — LLM chatbots, agentic workflows and automation — at ION Trading, Fixed Income." />
+  <meta property="og:title" content="Jodhdeep Singh — Product, AI & Automation" />
+  <meta property="og:description" content="Product, AI and automation at ION Trading, Fixed Income." />
+  <meta name="theme-color" content="#e9edf2" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23182230'/%3E%3Cpath d='M32 12l4.5 15.5L52 32l-15.5 4.5L32 52l-4.5-15.5L12 32l15.5-4.5z' fill='%238ab0f5'/%3E%3C/svg%3E" />
+
+  <!-- Set theme before paint to avoid a flash -->
+  <script>
+    (function () {
+      var d = document.documentElement, t = null;
+      try { t = localStorage.getItem('js-theme'); } catch (e) {}
+      if (t !== 'light' && t !== 'dark') t = d.getAttribute('data-theme');
+      if (t !== 'light' && t !== 'dark') {
+        t = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      d.setAttribute('data-theme', t);
+      d.classList.add('js');
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- The desktop shell is built by script.js. Without JavaScript this reads as a plain page. -->
+  <div id="doc" role="main">
+
+    <section id="about" class="app" data-app="about">
+      <div class="about">
+        <div class="portrait" aria-hidden="true">
+          <span>JS</span>
+          <!-- Add a professional photo at assets/portrait.jpg (4:5 portrait works best) and it appears here automatically -->
+          <img src="assets/portrait.jpg" alt="" onerror="this.remove()" />
+        </div>
+        <div class="about-copy">
+          <h1>Jodhdeep Singh</h1>
+          <p class="about-role">Product Analyst · ION Trading, Fixed Income</p>
+          <p class="lede">I ship AI-powered products: LLM chatbots, agentic workflows and automation. Currently doing an MBA in AI in Business at BITS Pilani.</p>
+          <dl class="stats">
+            <div><dt>Resolution time</dt><dd>−30%</dd></div>
+            <div><dt>Feature releases</dt><dd>10+</dd></div>
+            <div><dt>Tickets analysed</dt><dd>2,000+</dd></div>
+          </dl>
+          <div class="actions">
+            <a class="btn btn-primary" href="#journey" data-open="journey">View my journey</a>
+            <a class="btn" href="#resume" data-open="resume">Resume</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="resume" class="app app-flush" data-app="resume">
+      <div class="pdf">
+        <div class="pdf-bar">
+          <a class="btn btn-primary" href="assets/Jodhdeep_Singh_Resume.pdf" download>Download</a>
+        </div>
+        <div class="pdf-frame"><p>Download the PDF to read my full resume.</p></div>
+      </div>
+    </section>
+
+    <section id="contact" class="app" data-app="contact">
+      <p class="lede">Happy to talk about product roles, AI workflows or fixed income.</p>
+      <form class="mail">
+        <div class="mail-row"><span class="mail-l">To</span><span class="mail-to">jodhdeepsingh@gmail.com</span></div>
+        <label class="mail-row"><span class="mail-l">Subject</span><input id="mail-subject" name="subject" type="text" autocomplete="off" value="Hello from your portfolio" /></label>
+        <label class="mail-body"><span class="sr">Message</span><textarea id="mail-body" name="body" rows="4" placeholder="Write your message"></textarea></label>
+        <div class="actions">
+          <button class="btn btn-primary mail-send" type="submit">Open in email</button>
+          <button class="btn" type="button" data-action="copy-email">Copy email</button>
+          <a class="btn" href="https://www.linkedin.com/in/jodhdeep-singh" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </form>
+    </section>
+
+    <!-- ============ JOURNEY: every role, with its projects ============ -->
+    <section id="journey" class="app" data-app="journey">
+      <nav class="jn" aria-label="Jump to a role">
+        <button type="button" data-jump="j-ion">ION Trading</button>
+        <button type="button" data-jump="j-samsung">Samsung R&amp;D</button>
+        <button type="button" data-jump="j-dio">Defence Innovation</button>
+      </nav>
+
+      <article class="job" id="j-ion">
+        <p class="job-when mono">Jan 2024 — Present</p>
+        <h2>Product Analyst</h2>
+        <p class="job-org">ION Trading India — Fixed Income</p>
+        <ul class="bul">
+          <li>Clients' first point of contact. I gather requirements and write them up as user stories, functional requirements and acceptance criteria, with attention to data accuracy and access controls.</li>
+          <li>SME for Tradeweb Markets: I advise on trading workflows and troubleshoot complex scenarios to speed up client onboarding.</li>
+          <li>Ran systematic triage of the D2C Shield backlog and brought it to a historic low, which freed the team for high-priority work.</li>
+          <li>Gave prototype demos to premium clients that sped up their go-live decisions. I also mentor junior team members on technical problem-solving.</li>
+          <li>Created and presented GenAI and prompt-engineering training across the organisation, which helped teams adopt LLM tools including Microsoft Copilot.</li>
+        </ul>
+
+        <p class="proj-label mono">Projects at ION</p>
+
+        <section class="proj" id="p-cscompanion">
+          <span class="pv pv-queue" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+          <div class="proj-body">
+            <h3>CSCompanion</h3>
+            <p class="lede">An AI-powered product that classifies, triages and resolves JIRA tickets with LLM-based chatbots and agentic workflows. I owned it end to end, from customer research and problem discovery through design and launch.</p>
+            <dl class="stats"><div><dd>−30%</dd><dt>resolution time</dt></div><div><dd>−50%</dd><dt>manual triage</dt></div><div><dd>+18%</dd><dt>customer satisfaction</dt></div></dl>
+            <ol class="stages">
+              <li><h4>Discover: start with where the time goes</h4><p>Every incoming ticket had to be read and sorted by hand before anyone could start fixing it. I began with customer research and problem discovery, looking at the queue the way the support team experienced it.</p></li>
+              <li><h4>Classify: let the model do the first read</h4><p>An LLM-based chatbot reads each ticket as it lands and classifies it into the categories the team actually works in, so nobody starts from a blank page.</p></li>
+              <li><h4>Triage: route it with agentic workflows</h4><p>Agentic workflows then triage the ticket, move it to the right owner and help resolve it. The manual sorting step becomes a review.</p></li>
+              <li><h4>Iterate: ship, measure, refine</h4><p>After launch I kept iterating on usage data and client feedback.</p></li>
+            </ol>
+          </div>
+        </section>
+
+        <section class="proj" id="p-email-bot">
+          <span class="pv pv-mail" aria-hidden="true"><span class="m hi"><i></i><b></b></span><span class="m"><i></i><b></b></span><span class="m hi"><i></i><b></b></span><span class="m"><i></i><b></b></span></span>
+          <div class="proj-body">
+            <h3>Email classification bot</h3>
+            <p class="lede">A bot that reads the shared client mailbox, prioritises client issues and flags follow-ups, so the team doesn't have to watch the inbox all day.</p>
+            <dl class="stats"><div><dd>−80%</dd><dt>manual mailbox monitoring</dt></div><div><dd>2h → 30m</dd><dt>response time</dt></div><div><dd>+15%</dd><dt>SLA adherence</dt></div></dl>
+            <ul class="bul"><li>Designed and deployed the classifier end to end.</li><li>Pulled mail through Microsoft Graph API and connected the output to JIRA through its API.</li><li>Used Power Automate to orchestrate the flow and raise follow-up flags.</li></ul>
+            <p class="stack"><span>Python</span><span>Graph API</span><span>JIRA API</span><span>Power Automate</span></p>
+          </div>
+        </section>
+
+        <section class="proj" id="p-workload">
+          <span class="pv pv-load" aria-hidden="true"><b style="--w:82%"></b><b style="--w:64%"></b><b style="--w:74%"></b></span>
+          <div class="proj-body">
+            <h3>Workload-balancing system</h3>
+            <p class="lede">Auto-assigns incoming issues based on who is available and which timezone they're in, so work goes to someone who can actually pick it up now.</p>
+            <dl class="stats"><div><dd>+25%</dd><dt>resolution throughput</dt></div><div><dd>−40%</dd><dt>backlog</dt></div><div><dd>+20%</dd><dt>team satisfaction</dt></div></dl>
+            <ul class="bul"><li>Built assignment logic that weighs availability and timezone.</li><li>Replaced manual hand-offs between regions with automatic routing.</li></ul>
+            <p class="stack"><span>Automation</span><span>Routing logic</span><span>JIRA</span></p>
+          </div>
+        </section>
+
+        <section class="proj" id="p-rca">
+          <span class="pv pv-pareto" aria-hidden="true"><b style="--h:92%"></b><b style="--h:70%"></b><b style="--h:52%"></b><b style="--h:36%"></b><b style="--h:24%"></b><b style="--h:16%"></b><b style="--h:10%"></b></span>
+          <div class="proj-body">
+            <h3>Root cause analysis on 2,000+ tickets</h3>
+            <p class="lede">I went through more than 2,000 customer issue tickets to find the failure categories that kept coming back, then wrote guides so they could be fixed without escalating to developers.</p>
+            <dl class="stats"><div><dd>2,000+</dd><dt>tickets analysed</dt></div><div><dd>−44%</dd><dt>developer escalation rate</dt></div><div><dd>~35%</dd><dt>fewer post-launch client queries</dt></div></dl>
+            <ul class="bul"><li>Ran root cause analysis across the ticket history and ranked the top recurring failure categories.</li><li>Wrote troubleshooting guides for those categories.</li><li>Kept the documentation up to date as releases changed behaviour.</li></ul>
+            <p class="stack"><span>SQL</span><span>Python</span><span>JIRA</span><span>Confluence</span></p>
+          </div>
+        </section>
+
+        <section class="proj" id="p-releases">
+          <span class="pv pv-road" aria-hidden="true"><span class="line"></span><i style="--x:12%"></i><i style="--x:37%"></i><i style="--x:62%"></i><i style="--x:87%"></i></span>
+          <div class="proj-body">
+            <h3>10+ market feature releases</h3>
+            <p class="lede">Scope and deliverables for releases including Portfolio Trading, Trade-At-Close, UKMTF and EUMTF, across gateway, GUI and QA, working with Bloomberg, Tradeweb and MarketAxess.</p>
+            <dl class="stats"><div><dd>10+</dd><dt>feature releases</dt></div><div><dd>3</dd><dt>trading venues</dt></div><div><dd>0</dd><dt>critical defects from scope gaps</dt></div></dl>
+            <ul class="bul"><li>Turned client trading workflows into requirements, user stories and acceptance criteria.</li><li>Kept documentation current and tracked delivery risks around regulatory deadlines and scope changes.</li><li>Acted as SME for Tradeweb Markets: advised on trading workflows and troubleshot complex scenarios to speed up onboarding.</li></ul>
+            <p class="stack"><span>JIRA</span><span>Confluence</span><span>Agile &amp; Scrum</span><span>Risk management</span></p>
+          </div>
+        </section>
+
+        <section class="proj" id="p-shifts">
+          <span class="pv pv-cal" aria-hidden="true"><i class="on"></i><i></i><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i></i><i></i><i class="on"></i><i></i><i class="on"></i><i></i><i></i><i class="on"></i><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i></i><i class="on"></i><i></i></span>
+          <div class="proj-body">
+            <h3>Shift scheduling, automated</h3>
+            <p class="lede">I automated the team's logging-shift schedule, so it no longer takes hours of manual planning every month.</p>
+            <dl class="stats"><div><dd>~10 hrs</dd><dt>saved per month</dt></div><div><dd>99%</dd><dt>shift coverage accuracy</dt></div><div><dd>−70%</dd><dt>scheduling conflicts</dt></div></dl>
+            <ul class="bul"><li>Mapped the manual scheduling process and its common conflicts.</li><li>Automated schedule generation so coverage is consistent and conflicts are rare.</li></ul>
+            <p class="stack"><span>Python</span><span>Power Automate</span></p>
+          </div>
+        </section>
+      </article>
+
+      <article class="job" id="j-samsung">
+        <p class="job-when mono">Oct 2022 — May 2023</p>
+        <h2>Research Intern</h2>
+        <p class="job-org">Samsung R&amp;D — Samsung PRISM</p>
+        <ul class="bul">
+          <li>Worked in a team of 4+ members with 2 mentors from Samsung R&amp;D.</li>
+          <li>Applied machine learning models to video content analysis to extract insights from large datasets.</li>
+          <li>Contributed to model development and evaluation, improving content classification accuracy.</li>
+        </ul>
+      </article>
+
+      <article class="job" id="j-dio">
+        <p class="job-when mono">May 2022 — Jul 2022</p>
+        <h2>Intern, Data Collection &amp; Analysis</h2>
+        <p class="job-org">Defence Innovation Organisation</p>
+        <ul class="bul">
+          <li>Built real-time Twitter API workflows for a Ministry of Defence analytics initiative under iDEX.</li>
+          <li>Scaled processing to 50,000+ tweets a day and improved classification accuracy by about 20%.</li>
+        </ul>
+
+        <p class="proj-label mono">Project</p>
+
+        <section class="proj" id="p-social">
+          <span class="pv pv-wave" aria-hidden="true"><svg viewBox="0 0 200 70" preserveAspectRatio="none"><path d="M0 40 C 20 20, 40 55, 60 35 S 100 15, 120 38 S 160 60, 200 28" /></svg></span>
+          <div class="proj-body">
+            <h3>Real-time social media analytics</h3>
+            <p class="lede">A strategic analytics initiative with the Ministry of Defence under iDEX and DIO. I built workflows that capture and process real-time social media data.</p>
+            <dl class="stats"><div><dd>50,000+</dd><dt>tweets processed per day</dt></div><div><dd>~20%</dd><dt>better classification accuracy</dt></div></dl>
+            <ul class="bul"><li>Built ingestion workflows on the Twitter APIs.</li><li>Used pandas and scikit-learn for preprocessing, sentiment analysis and predictive modelling.</li><li>Delivered insights that improved situational awareness for defence stakeholders.</li></ul>
+            <p class="stack"><span>Python</span><span>pandas</span><span>scikit-learn</span><span>Twitter APIs</span><span>NLP</span></p>
+          </div>
+        </section>
+      </article>
+    </section>
+
+    <!-- ============ LEARNING & LEADERSHIP ============ -->
+    <section id="education" class="app" data-app="education">
+      <div class="edu">
+        <div><p class="mono">Jul 2025 — Present</p><h3>MBA, AI in Business</h3><p>BITS Pilani · Work Integrated Learning Programme</p></div>
+        <div><p class="mono">2020 — 2024 · CGPA 9.29</p><h3>B.E. Computer Science</h3><p>Minor in Conversational AI. Thapar Institute of Engineering &amp; Technology. Merit scholarship for outstanding academic performance in all four years.</p></div>
+        <div><p class="mono">Leadership</p><h3>Campus roles</h3><p>Class Representative for the CSE batch (800 students) · President, Thapar Toastmasters · General Secretary, Rotaract Club · Joint Secretary, MLSC · Management Head, Mudra Society</p></div>
+        <div><p class="mono">Certifications</p><h3>Product foundations</h3><p>Market Research &amp; Competitive Analysis · Enterprise Product Management Fundamentals</p></div>
+      </div>
+    </section>
+
+    <section id="toolkit" class="app" data-app="toolkit">
+      <div class="kits">
+        <div class="kit">
+          <h3>Product</h3>
+          <ul><li>Stakeholder management</li><li>Requirement gathering</li><li>Agile &amp; Scrum</li><li>Roadmaps</li><li>KPI tracking</li><li>Go-to-market</li></ul>
+        </div>
+        <div class="kit">
+          <h3>Data</h3>
+          <ul><li>SQL</li><li>Python</li><li>Power BI</li><li>Power Automate</li><li>Data pipelines &amp; ETL</li><li>JIRA · Confluence</li></ul>
+        </div>
+        <div class="kit">
+          <h3>AI</h3>
+          <ul><li>Agentic workflows</li><li>LLM-based chatbots</li><li>Conversational AI</li><li>Prompt engineering</li><li>Classification &amp; routing</li><li>NLP</li></ul>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
