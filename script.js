@@ -54,12 +54,7 @@
   };
 
   /* ---------- Shell ---------- */
-  const wall = el('div', 'wall', `
-    <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-      <path opacity=".28" d="M-20 620 C 240 470, 420 350, 680 300 S 1120 240, 1460 225"/>
-      <path opacity=".18" d="M-20 700 C 260 590, 480 490, 740 450 S 1140 400, 1460 390"/>
-      <path opacity=".1" d="M-20 780 C 280 700, 520 630, 780 600 S 1160 560, 1460 555"/>
-    </svg>`);
+  const wall = el('div', 'wall', '<i class="orb o1"></i><i class="orb o2"></i><i class="orb o3"></i>');
 
   const topbar = el('header', 'topbar', `
     <div class="tb-id">${starSvg}Jodhdeep Singh <span class="tb-active"></span></div>
